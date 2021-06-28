@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/nosql-social-ne
     useNewUrlParser: true,
     useUnifiedTopology: true   
 });
-mongoose.set('dbug', true);
+mongoose.set('debug', true);
 
 app.use(require('./routes'));
 app.listen(PORT, () => console.log(`you are now connected on ${PORT}`));

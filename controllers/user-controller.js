@@ -34,7 +34,7 @@ const userController ={
             })
     },
     createUser({body}, res){
-        User.create(body, {runValidators: true})
+        User.create(body)
             .then(userData => res.json(userData))
             .catch(err => {
                 console.log(err);
@@ -72,7 +72,7 @@ const userController ={
     addFriend({params}, res){
         User.findOneAndUpdate(
             {_id: params.userId},
-            {$push: {friends: friendId}},
+            {$push: {friends: params.friendId}},
             {new: true}
         )
             .then(userData => {
@@ -90,7 +90,7 @@ const userController ={
     removeFriend({params}, res){
         User.findOneAndUpdate(
             {_id: params.userId},
-            {$pull: {userId: params.friendId}},
+            {$pull: {friends: params.friendId}},
             {new: true}
         )
             .then(userData => res.json(userData))
